@@ -1,0 +1,57 @@
+@startuml
+
+class HomeTheaterFacade{
+    dvdPlayer:DvDPlayer
+    popcorn:Popcorn
+    projector:Projector
+    screen:Screen
+    stereo:Stereo
+    theaterLight:TheaterLight
+
+    ready()
+    play()
+    pause()
+    end()
+}
+HomeTheaterFacade	*-- DvDPlayer
+HomeTheaterFacade	*-- Popcorn
+HomeTheaterFacade	*-- Projector
+HomeTheaterFacade	*-- Screen
+HomeTheaterFacade	*-- Stereo
+HomeTheaterFacade	*-- TheaterLight
+
+class DvDPlayer{
+    on()
+    off()
+    play()
+    pause()
+}
+
+class Popcorn{
+    on()
+    off()
+    pop()
+}
+
+class Projector{
+    on()
+    off()
+    focus()
+}
+
+class Screen{
+    up()
+    down()
+}
+
+class Stereo{
+    up()
+    down()
+}
+
+class TheaterLight{
+    dim()
+    bright()
+}
+
+@enduml
