@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+client --> Action
+client --> ObjectStructure
+
+abstract class Action{
+    +getManResult()
+    +getWomanResult()
+}
+Action <--> Person
+Action <|-- Success
+Action <|-- Fail
+
+class Success{
+    +getManResult()
+    +getWomanResult()
+}
+
+class Fail{
+    +getManResult()
+    +getWomanResult()
+}
+
+abstract class Person{
+    +accept()
+}
+Person <|-- Man
+Person <|-- Woman
+
+class Man{
+    +accept()
+}
+
+class Woman{
+    +accept()
+}
+
+ObjectStructure o-- Person
+class ObjectStructure{
+    Person elements
+}
+
+@enduml

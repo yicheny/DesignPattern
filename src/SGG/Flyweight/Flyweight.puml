@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class WebSite{
+    +abstract use()
+}
+
+WebSite <|-- ConcreteWebSite
+class ConcreteWebSite{
+    String type
+    +ConcreteWebSite()
+    +use()
+}
+
+WebSiteFactory *-- ConcreteWebSite
+class WebSiteFactory{
+    -HashMap pool
+    +getWebSiteCategory()
+    +getWebSiteCount()
+}
+
+ConcreteWebSite <-- User
+class User{
+    -name
+    +User()
+    +getName()
+}
+
+Client --> WebSiteFactory
+
+@enduml
