@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Client --> SoyaMike
+
+abstract class SoyaMike{
+    +make()
+    -select()
+    #abstract addCondiments()
+    -soak()
+    -beat()
+}
+SoyaMike <|-- RedBeanSoyaMilk
+SoyaMike <|-- PeanutSoyaMilk
+SoyaMike <|-- PureSoyaMilk
+
+class RedBeanSoyaMilk{
+    #addCondiments()
+}
+
+class PeanutSoyaMilk{
+    #addCondiments()
+}
+
+class PureSoyaMilk{
+    #addCondiments()
+}
+
+@enduml

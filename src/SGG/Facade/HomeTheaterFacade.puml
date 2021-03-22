@@ -1,5 +1,9 @@
 @startuml
 
+class Client{
+}
+Client --> HomeTheaterFacade
+
 class HomeTheaterFacade{
     dvdPlayer:DvDPlayer
     popcorn:Popcorn
