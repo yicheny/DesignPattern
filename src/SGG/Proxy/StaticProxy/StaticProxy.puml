@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Client{}
+note top of Client
+1. 创建TeacherDao实例
+2. 创建TeacherDaoProxy实例(将TeacherDao交付代理)
+3. 使用TeacherDaoProxy执行方法
+end note
+
+Client --> TeacherDao
+Client --> TeacherDaoProxy
+
+Interface ITeacherDao{
+    +void teach()
+}
+ITeacherDao <|-- TeacherDao
+ITeacherDao <|-- TeacherDaoProxy
+ITeacherDao o-- TeacherDaoProxy
+
+class TeacherDao{
+    +void teach()
+}
+
+class TeacherDaoProxy{
+    -ITeacherDao target
+    +void teach()
+}
+
+@enduml
