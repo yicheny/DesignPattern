@@ -9,5 +9,6 @@ public class Client {
         //代理对象会以$开头
         System.out.println("ProxyInstance=" + proxyInstance.getClass());
         proxyInstance.teach();
+        proxyInstance.sayHello("tom");
     }
 }

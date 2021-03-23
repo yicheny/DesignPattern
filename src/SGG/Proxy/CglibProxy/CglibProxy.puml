@@ -4,19 +4,23 @@
 Client --> ProxyFactory
 Client --> TeacherDao
 
-Interface ITeacherDao{
-    + void teach();
-}
-ITeacherDao <|-- TeacherDao
-
 class TeacherDao{
     + void teach()
 }
+
+interface MethodInterceptor{
+    + Object intercept()
+}
+note top of MethodInterceptor
+这个接口由cglib包提供，代理类需要实现这个接口
+end note
+MethodInterceptor <|-- ProxyFactory
 
 class ProxyFactory{
     - Object target
     + ProxyFactory()
     + Object getProxyInstance()
+    + Object intercept()
 }
 
 @enduml

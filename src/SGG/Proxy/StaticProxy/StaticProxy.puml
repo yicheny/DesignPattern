@@ -16,7 +16,7 @@ Interface ITeacherDao{
 }
 ITeacherDao <|-- TeacherDao
 ITeacherDao <|-- TeacherDaoProxy
-ITeacherDao o-- TeacherDaoProxy
+ITeacherDao --o TeacherDaoProxy
 
 class TeacherDao{
     +void teach()
