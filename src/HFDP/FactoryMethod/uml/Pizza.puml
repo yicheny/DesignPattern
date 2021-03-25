@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Pizza{
+    # name:String
+    # material1:String
+    # material2:String
+    # material3:String
+    + getName()
+    + step1()
+    + step2()
+    + step3()
+    + step4()
+}
+Pizza <|-- NanJingPizzaT1
+
+class NanJingPizzaT1{
+
+}
+
+@enduml

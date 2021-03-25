@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Client --> RemoteController
+Client --> LightReceiver
+
+class RemoteController{
+    - onCommands:Command[]
+    - offCommands:Command[]
+}
+RemoteController o-- Command
+
+Interface Command{
+    + void execute()
+    + void undo()
+}
+Command <|-- LightOnCommand
+Command <|-- LightOffCommand
+
+class LightOnCommand{
+    + void execute()
+    + void undo()
+}
+
+class LightOffCommand{
+    + void execute()
+    + void undo()
+}
+
+class NoCommand{
+    + void execute()
+    + void undo()
+}
+
+class LightReceiver{
+    + void on()
+    + void off()
+}
+LightReceiver --o LightOnCommand
+LightReceiver --o LightOffCommand
+
+@enduml

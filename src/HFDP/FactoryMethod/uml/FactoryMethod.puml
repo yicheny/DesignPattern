@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Product <|-- ConcreteProduct
+Creator <|-- ConcreteCreator
+ConcreteProduct <-- ConcreteCreator
+
+class Creator{
+    factoryMethod()
+    anOperation()
+}
+
+class ConcreteCreator{
+    factoryMethod()
+}
+
+@enduml

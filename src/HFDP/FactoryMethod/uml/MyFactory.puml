@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class PizzaStore{
+    - factory:IPizzaFactory
+    + orderPizza(String type):Pizza;
+}
+PizzaStore o-- IPizzaFactory
+
+interface IPizzaFactory{
+    + createPizza(String type):Pizza
+}
+IPizzaFactory <|-- DongJingPizzaFactory
+IPizzaFactory <|-- NanJingPizzaFactory
+IPizzaFactory <|-- BeiJingPizzaFactory
+
+class DongJingPizzaFactory{
+    + createPizza(String type):Pizza
+}
+
+class NanJingPizzaFactory{
+    + createPizza(String type):Pizza
+}
+
+class BeiJingPizzaFactory{
+    + createPizza(String type):Pizza
+}
+
+@enduml
