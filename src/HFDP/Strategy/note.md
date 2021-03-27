@@ -49,6 +49,60 @@ public class GreenDuck extends Duck{}
 - `FlyWithWings`：会飞
 - `FlyNoWay`：不会飞
 
+### 3.1 组合
+我们首先使用组合的方式实现：
+```java
+abstract class Duck {
+    protected FlyBehavior flyBehavior;//子类可以在构造器设置初始的默认行为
+
+    public void performFly(){
+        flyBehavior.fly();
+    }
+}
+
+class RedDuck extends Duck{
+    public RedDuck(){
+        this.flyBehavior = new FlyWithWings();
+    }
+}
+```
+现在我们可以调用实例的`performQuack`方法进行飞行啦。 
+
+现在可以很方便的复用实现，我们知道：
+1. 方法是抽象的，实现是具象的
+1. 抽象是解耦的，抽象没有依赖，实现会产生依赖
+1. 抽象可以被复用，实现不能被复用（或者说复用必然是抽象）
+
+不过这种写法还是有一些问题：
+1. 不能在运行中改变行为，灵活性不是那么高
+2. 添加新的行为还是很麻烦：假如说现在有40个子类，其中30个都会飞，那么我们在添加行为时意味着可能要对30个类都进行修改
+
+让我们再换一种实现
+
+### 3.2 聚合
+```java
+public class RedDuck extends Duck {
+    private FlyBehavior flyBehavior;
+
+    public RedDuck(FlyBehavior flyBehavior) {
+        this.flyBehavior = flyBehavior;
+    }
+
+    public void setFlyBehavior(FlyBehavior flyBehavior) {
+        this.flyBehavior = flyBehavior;
+    }
+
+    public void performFly(){
+        flyBehavior.fly();
+    }
+}
+```
+现在我们可以在运行时改变行为啦
+
+再回顾下情况：
+1. 现在我们可以自由改变行为而不影响到`Duck`子类
+2. 现在我们将重复抽离出来了，可以复用代码，修改的时候也更方便，只需要修改一处
+
 # 知识
 ## 设计原则：抽离变化
 将可能需要变化的部分独立出来，不要和不变的代码混在一起。
