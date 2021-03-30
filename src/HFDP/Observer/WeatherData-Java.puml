@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Observable{
+    addObserver()
+    deleteObserver()
+    notifyObservers()
+    setChanged()
+    clearChanged()
+    hasChanged()
+}
+Observable <|-- WeatherData
+Observable --> Observer
+
+class WeatherData{
+    getTemperature()
+    getHumidity()
+    getPressure()
+}
+
+interface Observer{
+    update()
+}
+Observer <|-- CurrentConditionsDisplay
+Observer <|-- StatisticsDisplay
+Observer <|-- ForecastDisplay
+Observer <|-- ThirdPartyDisplay
+
+class CurrentConditionsDisplay{
+    update()
+    display()
+}
+note bottom of CurrentConditionsDisplay : 显示当前温度、湿度、气压
+
+class StatisticsDisplay{
+    update()
+    display()
+}
+note bottom of StatisticsDisplay : 显示跟踪天气信息
+
+class ForecastDisplay{
+    update()
+    display()
+}
+note bottom of ForecastDisplay : 显示天气预报
+
+class ThirdPartyDisplay{
+    update()
+    display()
+}
+note bottom of ThirdPartyDisplay : 第三方布告板
+@enduml
