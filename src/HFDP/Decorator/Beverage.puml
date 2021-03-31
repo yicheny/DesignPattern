@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Beverage{
+    # String description
+    + cost()
+    + getDescription()
+}
+Beverage <|-- HouseBlend
+Beverage <|-- DarkRoast
+Beverage <|-- Espresso
+Beverage <|-- Decaf
+Beverage <|-- CondimentDecorator
+
+note bottom of HouseBlend:优选咖啡
+class HouseBlend{
+    + cost()
+}
+
+note bottom of DarkRoast:焦炒咖啡
+class DarkRoast{
+    + cost()
+}
+
+note bottom of Espresso:浓咖啡
+class Espresso{
+    + cost()
+}
+
+note bottom of Decaf:脱因咖啡
+class Decaf{
+    + cost()
+}
+
+note top of CondimentDecorator:调料装饰者
+class CondimentDecorator{
+    + getDescription()
+}
+CondimentDecorator <|-- Milk
+CondimentDecorator <|-- Mocha
+CondimentDecorator <|-- Soy
+CondimentDecorator <|-- Whip
+
+note "这些是具体的调料装饰者，\n这里它们除了必须实现cost()，\n 还必须实现getDescription()" as ConcreteCondimentNote
+Milk .. ConcreteCondimentNote
+Mocha .. ConcreteCondimentNote
+Soy .. ConcreteCondimentNote
+Whip .. ConcreteCondimentNote
+class Milk{
+    - Beverage beverage
+    + cost()
+    + getDescription()
+}
+class Mocha{
+    - Beverage beverage
+    + cost()
+    + getDescription()
+}
+class Soy{
+    - Beverage beverage
+    + cost()
+    + getDescription()
+}
+class Whip{
+    - Beverage beverage
+    + cost()
+    + getDescription()
+}
+
+@enduml
