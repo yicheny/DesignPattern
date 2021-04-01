@@ -70,6 +70,82 @@ abstract class Beverage{
 1. 通过继承而不是组合的方式进行代码复用，继承是一种强耦合关系，这种做法会带来两个问题，一个是修改超类，会影响到所有子类，会带来意外的影响；另一个是复用，在不能多类继承的编程语言中，使用继承会限制复用的范围。
 
 ## 第三次实现：装饰者模式
+意图：装饰者模式动态的将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案
+
+### 实现`Beverage`
+```java
+public abstract class Beverage {
+    protected String description = "这个描述由子类实现";
+
+    public String getDescription() {
+        return description;
+    }
+
+    public abstract double cost();
+}
+```
+
+### 实现`CondimentDecorator`
+```java
+public abstract class CondimentDecorator extends Beverage{
+    public abstract String getDescription();
+}
+```
+
+### 实现具体饮料类
+以`HouseBlend`为例：
+```java
+public class HouseBlend extends Beverage{
+    public HouseBlend(){
+        description = "首选咖啡";
+    }
+
+    @Override
+    public double cost() {
+        return 1;
+    }
+}
+```
+
+### 实现具体调料类
+以`Milk`为例
+```java
+public class Milk extends CondimentDecorator{
+    Beverage beverage;
+
+    public Milk(Beverage beverage){
+        this.beverage = beverage;
+    }
+
+    @Override
+    public double cost() {
+        return 1 + beverage.cost();
+    }
+
+    @Override
+    public String getDescription() {
+        return beverage.getDescription() + ",牛奶";
+    }
+}
+```
+
+### 客户端调用演示
+```java
+public class Client {
+    public static void main(String[] args) {
+        Beverage beverage1 = new DarkRoast();
+        beverage1 = new Mocha(beverage1);
+        beverage1 = new Mocha(beverage1);
+        beverage1 = new Whip(beverage1);
+        System.out.println(beverage1.getDescription() + "$" + beverage1.cost());
+    }
+}
+```
+
+## 新的需求：根据不同尺寸设置调料价格
+现在星巴兹希望根据不同尺寸的饮料，价格也不同，比如`Mock`大中小倍的价格分别是3、2、1
+
+这个说一下思路，就是在每个子类计算时加个判断，根据不同尺寸累加上不同的价格
 
 # 知识
 ## 设计原则：类应该对扩展开放，对修改关闭
