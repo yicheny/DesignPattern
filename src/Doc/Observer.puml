@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+note left of Subject::Notify
+    for all o in observers (
+        o->Update()
+    )
+end note
+interface Subject{
+    Attach(Observer)
+    Detach(Observer)
+    Notify()
+}
+Subject <|-- ConcreteSubject
+Subject "observers" -Right-> Observer
+
+note left of ConcreteSubject::GetState
+    return subjectState
+end note
+class ConcreteSubject{
+    GetState()
+    SetState()
+    subjectState
+}
+
+interface Observer{
+    Update()
+}
+Observer <|-- ConcreteObserver
+
+note right of ConcreteObserver::Update
+    observerState = subject->GetState()
+end note
+class ConcreteObserver{
+    Update()
+    observerState
+}
+ConcreteObserver "subject" -Left-> ConcreteSubject
+
+@enduml
