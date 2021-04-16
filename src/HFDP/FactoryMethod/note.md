@@ -10,7 +10,7 @@ Duck duck = new RedHeadDuck();
 使用`new`进行类的创建，意味着我们在针对实现进行编程，这会有什么问题？
 
 # 生成单一`Pizza`
-现在我们有一家比萨厂，可以生产`Pizza1`这种类型的披萨，代码如下：
+假设我们有一家比萨厂，可以生产披萨，代码如下：
 ```java
 public class PizzaStore{
     public Pizza orderPizza(){
@@ -20,7 +20,6 @@ public class PizzaStore{
         pizza.step1();  
         pizza.step2();
         pizza.step3();  
-        pizza.step4();
         
         return pizza;
     }
@@ -29,7 +28,9 @@ public class PizzaStore{
 
 # 生成更多类型`Pizza`
 ## 第一次实现
-先将我们想要制作更多口味的`Pizza`，比较直接的思路是：
+现在我们的pizza店做大了，在北京、南京、东京等地都有分店，不同地区的人口味不同，所以允许分店的口味和本家不同【但是我们要求保持一致的制作步骤】。
+
+想要满足需求，比较直接的思路是：
 ```java
 public class PizzaStore {
     public Pizza orderPizza(String type) {
@@ -62,7 +63,7 @@ public class PizzaStore {
 
 ## 第二次实现-`SimpleFactory`
 首先我们将变化的部分抽取成一个类，这是一个简单工厂类
-> 简单工厂并不是23种设计模式之一，但它用的场景很多，也很有用，是比较特殊的一种模式
+> 简单工厂并不是23种设计模式之一，但它使用场景很多，也很有用，是比较特殊的一种模式
 
 ### 定义制作`Pizza`的简单工厂类
 ```java
@@ -125,7 +126,7 @@ import HFDP.FactoryMethod.code.NanjingPizza;
 public abstract class PizzaStore {
     public abstract Pizza createPizza();
 
-    public void PizzaOperation() {
+    public void orderPizza() {
         Pizza pizza = createPizza();
         pizza.step1();
         pizza.step2();
