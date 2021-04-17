@@ -2,7 +2,7 @@ package HFDP.FactoryMethod.code;
 
 public class NanjingFactory extends Factory{
     @Override
-    public Pizza createPizza() {
+    protected Pizza createPizza() {
         return new NanjingPizza();
     }
 }

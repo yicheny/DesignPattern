@@ -1,7 +1,7 @@
 package HFDP.FactoryMethod.code;
 
 abstract public class Factory {
-    abstract public Pizza createPizza();
+    abstract protected Pizza createPizza();
 
     public void pizzaOperation(){
         Pizza pizza = createPizza();
